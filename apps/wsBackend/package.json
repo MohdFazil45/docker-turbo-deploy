@@ -1,0 +1,19 @@
+{
+  "name": "wsbackend",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b",
+    "dev": " tsc -b && node index.js"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@repo/db": "*"
+  }
+}
+

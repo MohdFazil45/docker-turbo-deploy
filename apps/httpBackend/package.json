@@ -1,0 +1,21 @@
+{
+  "name": "httpbackend",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b",
+    "dev": " tsc -b && node index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/express": "^5.0.6"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@repo/db": "*",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1"
+  }
+}
