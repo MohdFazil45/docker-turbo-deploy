@@ -3,8 +3,6 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "build": "tsc -b",
-    "dev": " tsc -b && node index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",

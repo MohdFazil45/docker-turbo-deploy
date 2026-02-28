@@ -44,6 +44,6 @@ app.post("/user", async   (req, res) => {
 })
 
 
-app.listen(3000,()=> {
+app.listen(8080,()=> {
     console.log("Server started")
 })
