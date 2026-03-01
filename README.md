@@ -1,1 +1,1 @@
- Deploying a monorepo using docker to VMs
+ Deploying a monorepo using docker to AWS
