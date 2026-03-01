@@ -28,7 +28,7 @@ jobs:
 
       - name: Deploy to the VM
         run: |
-          echo: "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
           chmod 700 /home/runner/ssh_key
           ssh -o StrictHostKeyChecking=no -i ~/ssh_key root@65.2.178.93 -t "docker pull fazil846/deploy-turbo-frontend:${{ github.sha }} && docker stop user_frontend || true &&
             docker rm user_frontend || true  && docker run --name user_frontend -d -p 8080:8080  fazil846/deploy-turbo-frontend:${{ github.sha }}"
