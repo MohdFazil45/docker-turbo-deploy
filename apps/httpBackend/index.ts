@@ -5,7 +5,7 @@ const app = express()
 
 
 app.use(express.json());
-
+const PORT = 8000
 app.get("/users", async (req, res) => {
   const users = await prisma.user.findMany()
 
@@ -44,6 +44,6 @@ app.post("/user", async   (req, res) => {
 })
 
 
-app.listen(8080,()=> {
-    console.log("Server started")
+app.listen(PORT,()=> {
+    console.log("Server started", PORT)
 })
