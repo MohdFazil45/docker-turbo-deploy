@@ -28,6 +28,6 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
           chmod 700 /home/runner/ssh_key
-          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@65.2.178.93 -t "docker pull fazil846/deploy-turbo-wsbackend:${{ github.sha }} || true &&docker rm -f user_backend || true  && docker run --name user_wsbackend -d -p 8080:8080  fazil846/deploy-turbo-wsbackend:${{ github.sha }}"
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@65.2.178.93 -t "docker pull fazil846/deploy-turbo-wsbackend:${{ github.sha }} || true &&docker rm -f user_wsbackend || true  && docker run --name user_wsbackend -d -p 8080:8080  fazil846/deploy-turbo-wsbackend:${{ github.sha }}"
  
 
