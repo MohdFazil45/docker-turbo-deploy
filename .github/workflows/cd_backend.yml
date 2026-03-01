@@ -1,4 +1,4 @@
-name: Continous Deployment
+name: Continous Deployment HttpBackend
 on: 
   push:
     branches: [ main ]
@@ -16,7 +16,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN}}
 
-          
+
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
@@ -24,3 +24,11 @@ jobs:
           file: ./docker/Dockerfile.httpBackend
           push: true
           tags: fazil846/deploy-turbo:${{ github.sha }}
+
+      - name: Deploy to the VM
+        run: |
+          echo: "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
+          chmod 700 /home/runner/ssh_key
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key root@65.2.178.93 -t "docker pull fazil846/deploy-turbo:${{ github.sha }} && docker stop user_backend || true &&
+            docker rm user_backend || true  && docker run --name user_backend -d -p 8080:8080  fazil846/deploy-turbo:${{ github.sha }}"
+ 

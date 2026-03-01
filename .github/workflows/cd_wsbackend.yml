@@ -1,4 +1,4 @@
-name: Continous Deployment
+name: Continous Deployment WSBackend
 on: 
   push:
     branches: [ main ]
@@ -24,3 +24,11 @@ jobs:
           file: ./docker/Dockerfile.wsBackend
           push: true
           tags: fazil846/deploy-turbo-wsbackend:${{ github.sha }}
+      - name: Deploy to the VM
+        run: |
+          echo: "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
+          chmod 700 /home/runner/ssh_key
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key root@65.2.178.93 -t "docker pull fazil846/deploy-turbo-wsbackend:${{ github.sha }} && docker stop user_wsbackend || true &&
+            docker rm user_wsbackend || true  && docker run --name user_wsbackend -d -p 8080:8080  fazil846/deploy-turbo-wsbackend:${{ github.sha }}"
+ 
+
